@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Abyssinia Sec — Ethiopia's Bug Bounty Platform</title>
+  <meta name="description" content="Ethiopia's first and largest bug bounty and vulnerability disclosure platform."/>
+  <link rel="stylesheet" href="assets/css/global.css"/>
+  <link rel="stylesheet" href="assets/css/home.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body class="grid-bg">
+
+  <!-- Page Loader -->
+  <div class="page-loader" id="pageLoader">
+    <div class="loader-logo">Abyssinia Sec</div>
+    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+    <div class="loader-text">Initializing…</div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       NAVBAR
+  ════════════════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <div class="navbar-inner">
+
+        <!-- Logo -->
+        <a href="index.html" class="navbar-logo">
+          <div class="logo-mark">🛡️</div>
+          <span class="logo-text">Abyssinia<em>Sec</em></span>
+        </a>
+
+        <!-- Center links -->
+        <ul class="navbar-nav">
+          <li><a href="#programs"    class="nav-link">Programs</a></li>
+          <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+          <li><a href="#leaderboard" class="nav-link">Leaderboard</a></li>
+          <li><a href="#about"       class="nav-link">About</a></li>
+        </ul>
+
+        <!-- Right — portal chooser pill (THE NEW DESIGN) -->
+        <div class="navbar-end">
+          <div class="portal-chooser">
+            <a href="login-researcher.html" class="portal-link">Researcher</a>
+            <div class="portal-divider"></div>
+            <a href="login-company.html" class="portal-link portal-primary">For Companies</a>
+          </div>
+          <!-- Hamburger (mobile only) -->
+          <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile nav overlay -->
+  <div class="mobile-nav" id="mobileNav">
+    <button class="mobile-close" onclick="toggleMobileNav()"><i class="fas fa-times"></i></button>
+    <a href="#programs"    class="nav-link" onclick="toggleMobileNav()">Programs</a>
+    <a href="#how-it-works" class="nav-link" onclick="toggleMobileNav()">How It Works</a>
+    <a href="#leaderboard" class="nav-link" onclick="toggleMobileNav()">Leaderboard</a>
+    <a href="#about"       class="nav-link" onclick="toggleMobileNav()">About</a>
+    <div class="mobile-nav-actions">
+      <a href="login-researcher.html" class="btn btn-secondary">Researcher Login</a>
+      <a href="login-company.html"    class="btn btn-primary">Company Portal</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       HERO
+  ════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <canvas id="particles-canvas"></canvas>
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
+
+    <div class="container">
+      <!-- Content -->
+      <div class="hero-content">
+        <div class="hero-eyebrow animate-on-scroll">
+          <span class="eyebrow-dot"></span>
+          Ethiopia's #1 Bug Bounty Platform
+          <span class="eyebrow-live">LIVE</span>
+        </div>
+
+        <h1 class="hero-title animate-on-scroll">
+          Secure Ethiopia's<br/>
+          <span class="text-gradient">Digital Future</span>
+        </h1>
+
+        <p class="hero-body animate-on-scroll">
+          The first structured vulnerability disclosure and bug bounty platform built for Ethiopia.
+          Connecting elite security researchers with organizations that need protection.
+        </p>
+
+        <div class="hero-actions animate-on-scroll">
+          <a href="login-researcher.html" class="btn btn-primary btn-lg">
+            <i class="fas fa-terminal"></i> Start Hunting
+          </a>
+          <a href="login-company.html" class="btn btn-secondary btn-lg">
+            <i class="fas fa-building-shield"></i> Launch a Program
+          </a>
+        </div>
+
+        <div class="hero-stats animate-on-scroll">
+          <div class="hero-stat">
+            <span class="hero-stat-val" data-target="1247">0</span>
+            <span class="hero-stat-label">Researchers</span>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-val" data-target="89">0</span>
+            <span class="hero-stat-label">Programs</span>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-val" data-target="3540">0</span>
+            <span class="hero-stat-label">Bugs Found</span>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-val" data-target="420" data-prefix="$" data-suffix="K+">0</span>
+            <span class="hero-stat-label">Paid Out</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual -->
+      <div class="hero-visual animate-on-scroll">
+        <div class="terminal-window">
+          <div class="terminal-bar">
+            <div class="t-dots">
+              <span class="t-dot t-dot-r"></span>
+              <span class="t-dot t-dot-y"></span>
+              <span class="t-dot t-dot-g"></span>
+            </div>
+            <span class="t-tab-title">abyssinia-sec ~ recon</span>
+          </div>
+          <div class="terminal-body">
+            <div class="tl"><span class="t-p">❯</span> <span class="t-cmd">./scan --target telebirr.et --scope full</span></div>
+            <div class="tl t-dim">[*] Initializing scanner v3.1 — 2847 test cases loaded</div>
+            <div class="tl t-dim">[*] Target: telebirr.et  Scope: *.telebirr.et</div>
+            <div class="tl t-ok">[✓] Auth module ready</div>
+            <div class="tl t-dim">[*] Scanning endpoints ████████░░ 82%</div>
+            <div class="tl" style="color:var(--amber)">[!] CVE-2024-0117 — Medium severity detected</div>
+            <div class="tl t-ok">[✓] Report submitted → #ABY-2024-0892</div>
+            <div class="tl t-dim">[*] Estimated reward: <span style="color:var(--green)">$500 – $1,500</span></div>
+            <div class="tl t-dim">[*] Triage expected within 48 hours</div>
+            <div class="tl"><span class="t-p">❯</span> <span class="t-cursor">█</span></div>
+          </div>
+        </div>
+
+        <div class="hero-cards">
+          <div class="hero-card">
+            <div class="hc-icon">🐛</div>
+            <div>
+              <div class="hc-title">Critical Bug Found</div>
+              <div class="hc-sub">SQL Injection — CBE App</div>
+            </div>
+            <span class="badge badge-critical" style="margin-left:auto">Critical</span>
+          </div>
+          <div class="hero-card">
+            <div class="hc-icon">💰</div>
+            <div>
+              <div class="hc-title">Reward Paid</div>
+              <div class="hc-sub">$2,500 to @eth_hunter</div>
+            </div>
+            <span class="badge badge-low" style="margin-left:auto">Paid</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       TRUSTED BY
+  ════════════════════════════════════ -->
+  <section class="trusted-strip">
+    <div class="container">
+      <p class="trusted-label">Trusted by leading Ethiopian organizations</p>
+      <div class="trusted-logos">
+        <div class="trust-logo">Commercial Bank of Ethiopia</div>
+        <div class="trust-logo">Telebirr</div>
+        <div class="trust-logo">Ethio Telecom</div>
+        <div class="trust-logo">Dashen Bank</div>
+        <div class="trust-logo">Ethiopian Airlines</div>
+        <div class="trust-logo">Awash Bank</div>
+        <div class="trust-logo">EthSwitch</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       STATS
+  ════════════════════════════════════ -->
+  <section class="section-padding" id="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card animate-on-scroll">
+          <div class="stat-icon">🔍</div>
+          <div class="stat-number count-up" data-target="3540">0</div>
+          <div class="stat-label">Vulnerabilities Reported</div>
+        </div>
+        <div class="stat-card animate-on-scroll">
+          <div class="stat-icon">✅</div>
+          <div class="stat-number count-up" data-target="2891">0</div>
+          <div class="stat-label">Bugs Resolved</div>
+        </div>
+        <div class="stat-card animate-on-scroll">
+          <div class="stat-icon">🏆</div>
+          <div class="stat-number count-up" data-target="1247">0</div>
+          <div class="stat-label">Active Researchers</div>
+        </div>
+        <div class="stat-card animate-on-scroll">
+          <div class="stat-icon">🏢</div>
+          <div class="stat-number count-up" data-target="89">0</div>
+          <div class="stat-label">Active Programs</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       PROGRAMS
+  ════════════════════════════════════ -->
+  <section class="section-padding" id="programs">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Active Programs</div>
+        <h2 class="section-title">Find Your Next <span class="text-gradient">Target</span></h2>
+        <p class="section-sub">Browse active programs from Ethiopia's top organizations and earn rewards for responsible disclosure.</p>
+      </div>
+
+      <div class="filter-row animate-on-scroll" id="filterRow">
+        <button class="filter-chip active" data-filter="all">All Programs</button>
+        <button class="filter-chip" data-filter="fintech">FinTech</button>
+        <button class="filter-chip" data-filter="telecom">Telecom</button>
+        <button class="filter-chip" data-filter="government">Government</button>
+        <button class="filter-chip" data-filter="ecommerce">E-Commerce</button>
+      </div>
+
+      <div class="programs-grid" id="programsGrid"></div>
+
+      <div class="programs-cta animate-on-scroll">
+        <a href="login-researcher.html" class="btn btn-primary">
+          View All 89 Programs <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       HOW IT WORKS
+  ════════════════════════════════════ -->
+  <section class="section-padding" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Process</div>
+        <h2 class="section-title">How <span class="text-gradient">It Works</span></h2>
+      </div>
+
+      <div class="hiw-toggle">
+        <button class="hiw-btn active" data-role="researcher">For Researchers</button>
+        <button class="hiw-btn"        data-role="company">For Companies</button>
+      </div>
+
+      <div id="hiwContent"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       FEATURES
+  ════════════════════════════════════ -->
+  <section class="section-padding" id="features">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Platform</div>
+        <h2 class="section-title">Built for <span class="text-gradient">Serious Security</span></h2>
+        <p class="section-sub">Everything you need to run a world-class bug bounty program or launch your security research career.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon"><i class="fas fa-shield-halved"></i></div>
+          <h3>Secure Disclosure</h3>
+          <p>End-to-end encrypted report submission with CVE-style severity ratings and structured triage workflows.</p>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon"><i class="fas fa-coins"></i></div>
+          <h3>Instant Rewards</h3>
+          <p>Automated payout via Telebirr, CBE Birr, and bank transfer. Rewards from $50 to $10,000+ per finding.</p>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+          <h3>Live Analytics</h3>
+          <p>Real-time dashboards showing program health, submission trends, and researcher activity metrics.</p>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon"><i class="fas fa-users"></i></div>
+          <h3>Researcher Community</h3>
+          <p>Join Ethiopia's largest ethical hacking community. Learn, collaborate, and compete on the leaderboard.</p>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon"><i class="fas fa-gavel"></i></div>
+          <h3>Legal Safe Harbor</h3>
+          <p>All researchers are protected under our legal framework. Research responsibly without fear of prosecution.</p>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon"><i class="fas fa-robot"></i></div>
+          <h3>AI-Assisted Triage</h3>
+          <p>AI-powered duplicate detection and severity scoring accelerates your program operations significantly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       LEADERBOARD
+  ════════════════════════════════════ -->
+  <section class="section-padding" id="leaderboard">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Hall of Fame</div>
+        <h2 class="section-title">Top <span class="text-gradient">Researchers</span></h2>
+        <p class="section-sub">Ethiopia's elite security researchers earning recognition and real rewards.</p>
+      </div>
+      <div class="lb-table animate-on-scroll" id="leaderboardTable"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       CTA
+  ════════════════════════════════════ -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="cta-band animate-on-scroll">
+        <div class="section-eyebrow" style="margin-bottom:1rem">Get Started Today</div>
+        <h2 class="section-title">
+          Ready to Make Ethiopia<br/><span class="text-gradient">More Secure?</span>
+        </h2>
+        <p class="section-sub">
+          Whether you're a security researcher or a company protecting digital assets — Abyssinia Sec is your platform.
+        </p>
+        <div class="cta-actions">
+          <a href="login-researcher.html" class="btn btn-primary btn-lg">
+            <i class="fas fa-user-shield"></i> Join as Researcher
+          </a>
+          <a href="login-company.html" class="btn btn-secondary btn-lg">
+            <i class="fas fa-building"></i> Register Company
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       ABOUT
+  ════════════════════════════════════ -->
+  <section class="section-padding" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text animate-on-scroll">
+          <div class="section-eyebrow">About</div>
+          <h2 class="section-title">
+            Securing <span class="text-gradient">Digital Ethiopia</span>
+          </h2>
+          <p>
+            Abyssinia Sec was founded in 2023 by Ethiopian cybersecurity professionals who saw the growing need for structured vulnerability disclosure as Ethiopia's digital economy rapidly expanded.
+          </p>
+          <p>
+            As fintech, telecom, and government services go digital, the attack surface grows. We bridge the gap between the security research community and organizations that need protection.
+          </p>
+          <div class="about-chips">
+            <span class="about-chip"><i class="fas fa-certificate"></i> INSA Certified</span>
+            <span class="about-chip"><i class="fas fa-shield-halved"></i> ISO 27001</span>
+            <span class="about-chip"><i class="fas fa-globe-africa"></i> Pan-Africa Ready</span>
+          </div>
+        </div>
+        <div class="animate-on-scroll">
+          <div class="about-visual-wrap">
+            <div class="about-map-emoji">🌍</div>
+            <div class="about-map-label">Ethiopia</div>
+            <div class="about-map-dots">
+              <span class="map-ping" style="top:30%;left:44%"></span>
+              <span class="map-ping" style="top:52%;left:56%"></span>
+              <span class="map-ping" style="top:62%;left:42%"></span>
+              <span class="map-ping" style="top:40%;left:62%"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       FOOTER
+  ════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-brand-logo">
+            <div class="logo-mark" style="width:28px;height:28px;font-size:0.875rem">🛡️</div>
+            Abyssinia<em>Sec</em>
+          </div>
+          <p>Ethiopia's premier bug bounty and vulnerability disclosure platform. Building a safer digital future for Africa.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-btn"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="social-btn"><i class="fab fa-github"></i></a>
+            <a href="#" class="social-btn"><i class="fab fa-telegram"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <ul>
+            <li><a href="#programs">Browse Programs</a></li>
+            <li><a href="#leaderboard">Leaderboard</a></li>
+            <li><a href="#">Hall of Fame</a></li>
+            <li><a href="#">CVE Database</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Researchers</h4>
+          <ul>
+            <li><a href="login-researcher.html">Get Started</a></li>
+            <li><a href="#">Documentation</a></li>
+            <li><a href="#">Code of Conduct</a></li>
+            <li><a href="#">Payout Methods</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Companies</h4>
+          <ul>
+            <li><a href="login-company.html">Launch Program</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">API Access</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2024 Abyssinia Sec · Addis Ababa, Ethiopia</span>
+        <div class="footer-legal">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Security</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="assets/js/global.js"></script>
+  <script src="assets/js/home.js"></script>
+</body>
+</html>

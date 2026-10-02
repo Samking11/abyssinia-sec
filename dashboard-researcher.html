@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Researcher Dashboard — Abyssinia Sec</title>
+  <link rel="stylesheet" href="assets/css/global.css"/>
+  <link rel="stylesheet" href="assets/css/dashboard.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+  <div class="scanline"></div>
+
+  <div class="dashboard-layout">
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-logo">
+          <div class="sidebar-logo-icon">🛡️</div>
+          <div class="sidebar-logo-text">ABYSSINIA<span>SEC</span></div>
+        </a>
+        <button class="sidebar-toggle" onclick="toggleSidebar()" title="Collapse sidebar">
+          <i class="fas fa-chevron-left" id="sidebarToggleIcon"></i>
+        </button>
+      </div>
+
+      <div class="sidebar-user">
+        <div class="sidebar-user-avatar" id="sidebarAvatar">EH</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name" id="sidebarName">Eth Hunter</div>
+          <div class="sidebar-user-role">Researcher · Rank #12</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Main</div>
+        <a href="dashboard-researcher.html" class="sidebar-link active" data-page="overview">
+          <i class="fas fa-grid-2"></i> <span>Overview</span>
+        </a>
+        <a href="#" class="sidebar-link" data-page="programs" onclick="loadPage('programs')">
+          <i class="fas fa-bullseye"></i> <span>Programs</span>
+        </a>
+        <a href="#" class="sidebar-link" data-page="reports" onclick="loadPage('reports')">
+          <i class="fas fa-bug"></i> <span>My Reports</span>
+          <span class="sidebar-badge">3</span>
+        </a>
+        <a href="#" class="sidebar-link" data-page="submit" onclick="loadPage('submit')">
+          <i class="fas fa-plus-circle"></i> <span>Submit Bug</span>
+        </a>
+
+        <div class="nav-section-label">Earnings</div>
+        <a href="#" class="sidebar-link" data-page="earnings" onclick="loadPage('earnings')">
+          <i class="fas fa-coins"></i> <span>Earnings</span>
+        </a>
+        <a href="#" class="sidebar-link" data-page="payouts" onclick="loadPage('payouts')">
+          <i class="fas fa-wallet"></i> <span>Payouts</span>
+        </a>
+
+        <div class="nav-section-label">Community</div>
+        <a href="#" class="sidebar-link" data-page="leaderboard" onclick="loadPage('leaderboard')">
+          <i class="fas fa-ranking-star"></i> <span>Leaderboard</span>
+        </a>
+        <a href="#" class="sidebar-link" data-page="profile" onclick="loadPage('profile')">
+          <i class="fas fa-user-circle"></i> <span>My Profile</span>
+        </a>
+
+        <div class="nav-section-label">Account</div>
+        <a href="#" class="sidebar-link" data-page="settings" onclick="loadPage('settings')">
+          <i class="fas fa-gear"></i> <span>Settings</span>
+        </a>
+        <a href="#" class="sidebar-link" data-page="notifications" onclick="loadPage('notifications')">
+          <i class="fas fa-bell"></i> <span>Notifications</span>
+          <span class="sidebar-badge">5</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="index.html" class="sidebar-link" style="color:var(--accent-red)">
+          <i class="fas fa-right-from-bracket"></i> <span>Logout</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <div class="main-content" id="mainContent">
+
+      <!-- Top Bar -->
+      <div class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu-btn" onclick="toggleMobileSidebar()">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="topbar-search">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search programs, reports..." id="topbarSearch"/>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <div style="position:relative;">
+            <button class="topbar-icon-btn" onclick="toggleNotif()" title="Notifications">
+              <i class="fas fa-bell"></i>
+              <span class="topbar-notif-dot"></span>
+            </button>
+            <!-- Notification Dropdown -->
+            <div class="notif-dropdown" id="notifDropdown">
+              <div class="notif-header">
+                <span>Notifications</span>
+                <button class="widget-action" onclick="markAllRead()">Mark all read</button>
+              </div>
+              <div class="notif-item unread">
+                <div class="notif-dot-indicator"></div>
+                <div>
+                  <div class="notif-content-text"><strong>Report Accepted</strong> — #ABY-2024-0891 has been accepted by Telebirr</div>
+                  <div class="notif-content-time">2 hours ago</div>
+                </div>
+              </div>
+              <div class="notif-item unread">
+                <div class="notif-dot-indicator"></div>
+                <div>
+                  <div class="notif-content-text"><strong>Reward Paid</strong> — $800 transferred to your Telebirr wallet</div>
+                  <div class="notif-content-time">5 hours ago</div>
+                </div>
+              </div>
+              <div class="notif-item unread">
+                <div class="notif-dot-indicator"></div>
+                <div>
+                  <div class="notif-content-text"><strong>New Program</strong> — Awash Bank launched a new bug bounty program</div>
+                  <div class="notif-content-time">1 day ago</div>
+                </div>
+              </div>
+              <div class="notif-item">
+                <div style="width:8px"></div>
+                <div>
+                  <div class="notif-content-text">Comment on report <strong>#ABY-2024-0887</strong> from CBE Security Team</div>
+                  <div class="notif-content-time">2 days ago</div>
+                </div>
+              </div>
+              <div class="notif-item">
+                <div style="width:8px"></div>
+                <div>
+                  <div class="notif-content-text">You ranked up to <strong>#12</strong> on the leaderboard!</div>
+                  <div class="notif-content-time">3 days ago</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <a href="#" class="topbar-icon-btn" title="Help">
+            <i class="fas fa-circle-question"></i>
+          </a>
+
+          <div class="topbar-user" onclick="loadPage('profile')">
+            <div class="topbar-avatar" id="topbarAvatar">EH</div>
+            <span class="topbar-username" id="topbarName">Eth Hunter</span>
+            <i class="fas fa-chevron-down" style="font-size:0.6rem;color:var(--text-muted)"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Page Content -->
+      <div class="page-content" id="pageContent">
+        <!-- Injected dynamically by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Sidebar overlay for mobile -->
+  <div id="sidebarOverlay" onclick="toggleMobileSidebar()"
+    style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:150;backdrop-filter:blur(4px)"></div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="assets/js/global.js"></script>
+  <script src="assets/js/dashboard-researcher.js"></script>
+</body>
+</html>

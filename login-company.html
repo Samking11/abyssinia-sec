@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Company Portal — Abyssinia Sec</title>
+  <link rel="stylesheet" href="assets/css/global.css"/>
+  <link rel="stylesheet" href="assets/css/auth.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    /* Company accent overrides — violet instead of cyan */
+    .auth-portal-btn.active     { background: linear-gradient(135deg, #7c3aed, #c026d3); }
+    .auth-role-pill             { background: rgba(124,58,237,0.12); border-color: rgba(124,58,237,0.25); color: #a78bfa; }
+    .auth-submit                { background: linear-gradient(135deg, #7c3aed, #c026d3); }
+    .auth-submit:hover          { box-shadow: 0 4px 20px rgba(124,58,237,0.3); }
+    .forgot-link, .auth-switch a { color: #a78bfa; }
+    .showcase-stat-val          { background: linear-gradient(135deg,#7c3aed,#c026d3); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .showcase-feature i         { color: #a78bfa; }
+    .auth-showcase-title .text-gradient { background: linear-gradient(135deg,#7c3aed,#c026d3); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .auth-blob-1                { background: radial-gradient(circle, rgba(124,58,237,0.08) 0%, transparent 70%); }
+    .auth-blob-2                { background: radial-gradient(circle, rgba(192,38,211,0.07) 0%, transparent 70%); }
+  </style>
+</head>
+<body class="grid-bg">
+
+  <div class="page-loader" id="pageLoader">
+    <div class="loader-logo">Abyssinia Sec</div>
+    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+    <div class="loader-text">Enterprise portal…</div>
+  </div>
+
+  <div class="auth-page">
+
+    <!-- ── Left: Form ── -->
+    <div class="auth-left">
+      <div class="auth-left-bg"></div>
+      <div class="auth-blob-1"></div>
+      <div class="auth-blob-2"></div>
+
+      <div class="auth-left-content">
+        <a href="index.html" class="auth-back">
+          <i class="fas fa-arrow-left"></i> Back to home
+        </a>
+
+        <div class="auth-logo">
+          <div class="auth-logo-mark" style="background:linear-gradient(135deg,#7c3aed,#c026d3)">🏢</div>
+          <div class="auth-logo-text">Abyssinia<em style="color:#a78bfa">Sec</em></div>
+        </div>
+
+        <!-- Portal switcher -->
+        <div class="auth-portal-switch">
+          <a href="login-researcher.html" class="auth-portal-btn">
+            <i class="fas fa-terminal"></i> Researcher
+          </a>
+          <a href="login-company.html" class="auth-portal-btn active">
+            <i class="fas fa-building"></i> Company
+          </a>
+        </div>
+
+        <!-- Tabs -->
+        <div class="auth-tabs">
+          <button class="auth-tab active" id="loginTab" onclick="switchTab('login')">Sign In</button>
+          <button class="auth-tab" id="registerTab" onclick="switchTab('register')">Register Company</button>
+        </div>
+
+        <!-- ── LOGIN ── -->
+        <div id="loginForm">
+          <div class="auth-header">
+            <div class="auth-role-pill"><i class="fas fa-building"></i> Enterprise Portal</div>
+            <h1 class="auth-title">Company <span class="text-gradient">Access</span></h1>
+            <p class="auth-subtitle">Sign in to manage your programs and review vulnerability reports.</p>
+          </div>
+
+          <form onsubmit="handleCompanyLogin(event)">
+            <div class="form-group">
+              <label class="form-label">Work Email</label>
+              <div class="form-input-icon">
+                <i class="fas fa-envelope input-icon"></i>
+                <input type="email" class="form-input" id="companyEmail" placeholder="security@company.et" required/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Password</label>
+              <div class="password-wrapper">
+                <input type="password" class="form-input" id="companyPassword" placeholder="••••••••" required/>
+                <button type="button" class="password-toggle" onclick="togglePassword('companyPassword',this)">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+            </div>
+            <div class="form-options">
+              <label class="remember-me"><input type="checkbox"/> Remember device</label>
+              <a href="#" class="forgot-link">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="auth-submit" id="loginBtn">
+              <span class="btn-text"><i class="fas fa-sign-in-alt"></i> Sign In</span>
+              <div class="spinner"></div>
+            </button>
+
+            <div class="auth-divider">or</div>
+            <div class="social-auth">
+              <button type="button" class="social-btn"><i class="fas fa-id-card" style="color:#a78bfa"></i> Sign in with SSO</button>
+            </div>
+            <p class="auth-switch">New to Abyssinia Sec? <a href="#" onclick="switchTab('register')">Register your company</a></p>
+          </form>
+        </div>
+
+        <!-- ── REGISTER ── -->
+        <div id="registerForm" style="display:none">
+          <div class="auth-header">
+            <div class="auth-role-pill"><i class="fas fa-building"></i> Enterprise Registration</div>
+            <h1 class="auth-title">Launch Your <span class="text-gradient">Program</span></h1>
+            <p class="auth-subtitle">Register and start your bug bounty program today.</p>
+          </div>
+
+          <form onsubmit="handleCompanyRegister(event)">
+            <div class="form-group">
+              <label class="form-label">Company Name</label>
+              <div class="form-input-icon">
+                <i class="fas fa-building input-icon"></i>
+                <input type="text" class="form-input" id="companyName" placeholder="Commercial Bank of Ethiopia" required/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Industry</label>
+              <select class="form-select" id="industry">
+                <option value="" disabled selected>Select industry</option>
+                <option>Financial Services / FinTech</option>
+                <option>Telecommunications</option>
+                <option>Government / Public Sector</option>
+                <option>E-Commerce / Retail</option>
+                <option>Healthcare</option>
+                <option>Education</option>
+                <option>Logistics & Transportation</option>
+                <option>Energy & Utilities</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">First Name</label>
+                <input type="text" class="form-input" id="contactFirst" placeholder="Dawit" required/>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Last Name</label>
+                <input type="text" class="form-input" id="contactLast" placeholder="Tadesse" required/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Work Email</label>
+              <div class="form-input-icon">
+                <i class="fas fa-envelope input-icon"></i>
+                <input type="email" class="form-input" id="workEmail" placeholder="security@company.et" required/>
+              </div>
+              <div class="form-hint">Must be a company domain email</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Company Website</label>
+              <div class="form-input-icon">
+                <i class="fas fa-globe input-icon"></i>
+                <input type="url" class="form-input" id="companyWebsite" placeholder="https://yourcompany.et" required/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Password</label>
+              <div class="password-wrapper">
+                <input type="password" class="form-input" id="companyRegPassword" placeholder="Min. 8 characters" required
+                       oninput="checkPasswordStrength(this.value)"/>
+                <button type="button" class="password-toggle" onclick="togglePassword('companyRegPassword',this)">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+              <div class="password-strength" id="strengthIndicator" style="display:none">
+                <div class="strength-bar">
+                  <div class="strength-segment" id="s1"></div><div class="strength-segment" id="s2"></div>
+                  <div class="strength-segment" id="s3"></div><div class="strength-segment" id="s4"></div>
+                </div>
+                <span class="strength-text" id="strengthText">Weak</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Annual Bounty Budget</label>
+              <select class="form-select" id="budget">
+                <option value="" disabled selected>Select range</option>
+                <option>Under $5,000</option>
+                <option>$5,000 – $20,000</option>
+                <option>$20,000 – $50,000</option>
+                <option>$50,000 – $100,000</option>
+                <option>Over $100,000</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+            <div class="checkbox-group">
+              <div class="checkbox-custom" id="companyTermsCheck" onclick="toggleCheck('companyTermsCheck')"></div>
+              <label class="checkbox-label" onclick="toggleCheck('companyTermsCheck')">
+                I agree to the <a href="#">Terms of Service</a> and <a href="#">Company Agreement</a>
+              </label>
+            </div>
+            <button type="submit" class="auth-submit" id="registerBtn">
+              <span class="btn-text"><i class="fas fa-rocket"></i> Register Company</span>
+              <div class="spinner"></div>
+            </button>
+            <p class="auth-switch">Already registered? <a href="#" onclick="switchTab('login')">Sign in</a></p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Right: Showcase ── -->
+    <div class="auth-right">
+      <div class="auth-right-glow" style="background:radial-gradient(circle,rgba(124,58,237,0.07) 0%,transparent 70%)"></div>
+      <div class="auth-showcase">
+        <div class="auth-showcase-icon">🏢</div>
+        <h2 class="auth-showcase-title">
+          Secure Your<br/><span class="text-gradient">Digital Assets</span>
+        </h2>
+        <p class="auth-showcase-body">
+          Harness Ethiopia's ethical hacking community to proactively find and fix vulnerabilities before attackers do.
+        </p>
+        <div class="showcase-stats">
+          <div class="showcase-stat">
+            <div class="showcase-stat-val">1,247</div>
+            <div class="showcase-stat-label">Researchers</div>
+          </div>
+          <div class="showcase-stat">
+            <div class="showcase-stat-val">93%</div>
+            <div class="showcase-stat-label">Resolution Rate</div>
+          </div>
+          <div class="showcase-stat">
+            <div class="showcase-stat-val">48hr</div>
+            <div class="showcase-stat-label">First Response</div>
+          </div>
+          <div class="showcase-stat">
+            <div class="showcase-stat-val">89</div>
+            <div class="showcase-stat-label">Programs Live</div>
+          </div>
+        </div>
+        <div class="showcase-features">
+          <div class="showcase-feature"><i class="fas fa-magnifying-glass"></i> Access to 1,247+ vetted researchers</div>
+          <div class="showcase-feature"><i class="fas fa-filter"></i> AI-powered triage & duplicate detection</div>
+          <div class="showcase-feature"><i class="fas fa-chart-line"></i> Real-time analytics & compliance reporting</div>
+          <div class="showcase-feature"><i class="fas fa-headset"></i> Dedicated customer success manager</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+  <script src="assets/js/global.js"></script>
+  <script src="assets/js/auth.js"></script>
+</body>
+</html>
